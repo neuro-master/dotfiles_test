@@ -1,0 +1,7 @@
+[user]
+	name = Neuro
+	email = neuro2718@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
