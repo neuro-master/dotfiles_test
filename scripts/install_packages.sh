@@ -1,20 +1,23 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
-set -euo pipefail
+set -eu
 
 # Load app arrays
-DOTFILES="$(cd "$(dirname "${(%):-%N}")"/.. && pwd)"
-source "$DOTFILES/scripts/apps.h"
+DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
+. "$DOTFILES/scripts/apps.sh"
 
-# Combine all arrays into one
-packages=("${core_apps[@]}")
+# Update system
+echo "[package installer] Updating system"
+sudo pacman -Syu --noconfirm
 
-# Install all apps in packages array
-for pkg in "${packages[@]}"; do
-    if ! command -v "$pkg" >/dev/null 2>&1; then
-        echo "Installing $pkg"
-        sudo pacman -S --noconfirm "$pkg"
-    else
-        echo "$pkg already installed"
-    fi
+# Install all apps
+for pkg in $ALL_APPS; do
+	if ! command -v "$pkg" >/dev/null 2>&1; then
+		echo "[package installer] Installing $pkg"
+		sudo pacman -S --noconfirm "$pkg"
+	else
+		echo "[package installer] $pkg is already installed"
+	fi
 done
+
+echo "[package installer] Done"
