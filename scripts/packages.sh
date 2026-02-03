@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CORE_PKGS="zsh vim gcc make git python"
+CORE_PKGS="zsh vim gcc g++ make git python"
 GUI_PKGS="xorg-server xorg-xinit i3-wm alacritty"
 WEB_PKGS="firefox"
 
