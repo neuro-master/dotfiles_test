@@ -18,6 +18,7 @@ bindkey -v
 # Custom aliases
 alias ls='ls --color=auto'
 alias ll='ls -lah'
+alias la='ls -A'
 
 # Prompt
 autoload -Uz promptinit

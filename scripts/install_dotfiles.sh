@@ -3,9 +3,8 @@
 set -eu
 
 # Load app arrays
-SCRIPT_DIR=$(dirname "$0")
-DOTFILES="$SCRIPT_DIR/.."
-. "./$DOTFILES/scripts/apps.sh"
+DOTFILES="$(cd "$(dirname "$0")/.." && pwd)"
+. "$DOTFILES/scripts/packages.sh"
 
 # Define XDG Environment variables (and set defaults if vars don't exist)
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -17,7 +16,7 @@ XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME"
 
 # Install necessary dotfiles for each app
-for app in $ALL_APPS; do
+for app in $ALL_PKGS; do
     case $app in
         zsh)
             echo "Installing zsh files (.zshenv, .zshrc, .zprofile)"
@@ -40,8 +39,37 @@ for app in $ALL_APPS; do
             mkdir -p "$XDG_CONFIG_HOME/git"
             cp "$DOTFILES/git/config" "$XDG_CONFIG_HOME/git/config"
             ;;
+        python)
+            echo "Creating python history file directory"
+            mkdir -p "$XDG_STATE_HOME/python"
+            ;;
+        xorg-server)
+            echo "Creating xorg directories"
+            mkdir -p "$XDG_STATE_HOME/xorg"
+            ;;
+        xorg-xinit)
+            echo "Installing xinitrc file"
+            mkdir -p "$XDG_CONFIG_HOME/xinit"
+            cp "$DOTFILES/xinit/xinitrc" "$XDG_CONFIG_HOME/xinit/xinitrc"
+            ;;
+        i3-wm)
+            echo "Installing i3 config"
+            mkdir -p "$XDG_CONFIG_HOME/i3"
+            cp "$DOTFILES/i3/config" "$XDG_CONFIG_HOME/i3/config"
+            ;;
+        alacritty)
+            echo "Installing alacritty config"
+            mkdir -p "$XDG_CONFIG_HOME/alacritty"
+            cp "$DOTFILES/alacritty/alacritty.toml" "$XDG_CONFIG_HOME/alacritty/alacritty.toml"
+            ;;
         *)
             echo "No dotfiles for $app"
             ;;
     esac
 done
+
+# Some other necessary dotfiles/directories (to align with my .zshenv)
+echo "Creating less history file directory"
+mkdir -p "$XDG_STATE_HOME/less"
+
+echo "Finished installing dotfiles"
