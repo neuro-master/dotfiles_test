@@ -14,7 +14,7 @@ sudo pacman -Syu --noconfirm
 for pkg in $ALL_PKGS; do
     if ! pacman -Q "$pkg" >/dev/null 2>&1; then
         echo "Installing $pkg"
-        sudo pacman -S --needed --noconfirm $pkg
+        sudo pacman -S --needed --noconfirm "$pkg"
     else
         echo "$pkg is already installed"
     fi
