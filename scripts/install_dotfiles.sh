@@ -42,6 +42,7 @@ for app in $ALL_PKGS; do
         python)
             echo "Creating python history file directory"
             mkdir -p "$XDG_STATE_HOME/python"
+            touch "$XDG_STATE_HOME/python/python_history"
             ;;
         xorg-server)
             echo "Creating xorg directories"
@@ -71,5 +72,6 @@ done
 # Some other necessary dotfiles/directories (to align with my .zshenv)
 echo "Creating less history file directory"
 mkdir -p "$XDG_STATE_HOME/less"
+touch "$XDG_STATE_HOME/less/less_history"
 
 echo "Finished installing dotfiles"
