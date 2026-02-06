@@ -19,6 +19,9 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME"
 for app in $ALL_PKGS; do
     case $app in
         zsh)
+            echo "Creatin zsh history file directory"
+            mkdir -p "$XDG_STATE_HOME/zsh"
+
             echo "Installing zsh files (.zshenv, .zshrc, .zprofile)"
             mkdir -p "$XDG_CONFIG_HOME/zsh"
             cp "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
