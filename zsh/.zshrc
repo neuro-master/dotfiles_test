@@ -1,10 +1,15 @@
 # Interactive Shell Config
 
 
-# History
+# Zsh History Config
 HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
+setopt appendhistory
+
+# Other Application Histories
+LESSHISTFILE="$XDG_STATE_HOME/less/less_history"
+PYTHON_HISTORY="$XDG_STATE_HOME/python/python_history"
 
 # Completion System
 autoload -Uz compinit

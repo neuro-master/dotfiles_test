@@ -9,8 +9,5 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # Application specific
 
-export LESSHISTFILE="$XDG_STATE_HOME/less/less_history"
-export PYTHON_HISTORY="$XDG_STATE_HOME/python/python_history"
-
 export XINITRC="$XDG_CONFIG_HOME/xinit/xinitrc"
 export XAUTHORITY="$XDG_STATE_HOME/xorg/Xauthority"
