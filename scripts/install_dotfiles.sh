@@ -73,8 +73,13 @@ for app in $ALL_PKGS; do
 done
 
 # Some other necessary dotfiles/directories (to align with my .zshenv)
+
+# History files
 echo "Creating less history file directory"
 mkdir -p "$XDG_STATE_HOME/less"
 touch "$XDG_STATE_HOME/less/less_history"
+
+# Fonts
+cp -r "$DOTFILES/fonts" "$XDG_DATA_HOME"
 
 echo "Finished installing dotfiles"
