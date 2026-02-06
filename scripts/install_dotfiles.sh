@@ -21,6 +21,7 @@ for app in $ALL_PKGS; do
         zsh)
             echo "Creatin zsh history file directory"
             mkdir -p "$XDG_STATE_HOME/zsh"
+            touch "$XDG_STATE_HOME/zsh/zsh_history"
 
             echo "Installing zsh files (.zshenv, .zshrc, .zprofile)"
             mkdir -p "$XDG_CONFIG_HOME/zsh"
