@@ -81,6 +81,9 @@ mkdir -p "$XDG_STATE_HOME/less"
 touch "$XDG_STATE_HOME/less/less_history"
 
 # Fonts
-cp -r "$DOTFILES/fonts" "$XDG_DATA_HOME"
+if [ "$INSTALL_FONTS" = "yes" ]; then
+    cp -r "$DOTFILES/fonts" "$XDG_DATA_HOME"
+fi
 
+# Done
 echo "Finished installing dotfiles"
